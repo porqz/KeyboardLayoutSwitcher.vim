@@ -1,5 +1,56 @@
 h1. Keyboard Layout Switcher
 
+See this text in Russian below.
+
+h2. What is it
+
+Keyboard Layout Switcher (KLS) is plugin for Vim, which frees users from unnecessary actions. 
+
+h3. What does it do
+
+It switchs keyboard layout to default keyboard layout when:
+* Vim is starting;
+* You are leaving input mode;
+* You are entering command mode;
+* You are making double pressing &lt;Esc&gt; in normal or command modes.
+
+And wait, wait...
+
+* KLS strores keyboard layout, when Vim lost focus and restores this layout, when Vim got input focus.
+
+Imagine, you are editing source code in Vim. In some moment you are digressing, for example, to write in "Twitter":http://twitter.com/. When you will be back to Vim, KLS restores keyboard layout automaticly. It is incredibly handy.
+
+And each tab has itself keyboard layout.
+
+h3. Default keyboard layout
+
+Usually it is U.S., but KLS provides using others layouts, for example, "typography layout by Ilya Birman":http://ilyabirman.ru/typography-layout/.
+
+h2. How does it works
+
+Keyboard layout switches by additional application, which is wrotten in Objective-C. When it starts without arguments, it prints index of current layout (for example, U.S. layout has index 0). To switch to some keyboard layout you should start the application with argument, which corresponds to the layout. If there is no layout with index, then application prints -1.
+
+Vim plugin provides the control. I tried to comment source code maximal detailed, to everyone can understand it.
+
+h2. Preferences
+
+As I said, usually default keyboard layout is english U.S., so in fact you don’t need to edit preferences.
+
+If you want to use another keyboard layout as default, edit the plugin file (~/.vim/plugin/KeyboardLayoutSwitcher.vim) by changing this line:
+@let g:defaultInputSourceIndex = 0@
+to:
+@let g:defaultInputSourceIndex = n " n is index of wanted keyboard layout@
+
+h2. Capabilities
+
+KLS works only on Mac OS X 10.6 and higher. If you are still using 10.5, you can recompile source code of additional application by yourself.
+
+And sorry for my english-hooenglish :).
+
+
+
+h1. Keyboard Layout Switcher
+
 h2. Что это такое
 
 Keyboard Layout Switcher (KLS) — плагин для Vim, который освобождает пользователя от лишних телодвижений. 
