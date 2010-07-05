@@ -12,7 +12,7 @@ It switchs keyboard layout to default keyboard layout when:
 * Vim is starting;
 * You are leaving input mode;
 * You are entering command mode;
-* You are making double pressing &lt;Esc&gt; in normal or command modes.
+* You are pressing double &lt;Esc&gt; in normal or command modes.
 
 And wait, wait...
 
