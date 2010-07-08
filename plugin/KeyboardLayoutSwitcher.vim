@@ -26,14 +26,10 @@ function! RestoreLastInputSource()
 	endif
 endfunction
 
-autocmd FocusLost * call StoreCurrentInputSource()
-autocmd FocusGained * call RestoreLastInputSource()
+autocmd FocusLost,TabLeave  * call StoreCurrentInputSource()
+autocmd FocusGained,TabEnter * call RestoreLastInputSource()
 
-autocmd TabLeave * call  StoreCurrentInputSource()
-autocmd TabEnter * call RestoreLastInputSource()
-
-autocmd InsertLeave * call SwitchToDefaultInputSource()
-autocmd VimEnter * call SwitchToDefaultInputSource()
+autocmd VimEnter,InsertLeave * call SwitchToDefaultInputSource()
 
 noremap : :silent call SwitchToDefaultInputSource()<CR>:
 noremap <silent> <Esc><Esc> :silent call SwitchToDefaultInputSource()<Esc><Esc>
