@@ -26,8 +26,15 @@ function! RestoreLastInputSource()
 	endif
 endfunction
 
-autocmd FocusLost,TabLeave  * call StoreCurrentInputSource()
-autocmd FocusGained,TabEnter * call RestoreLastInputSource()
+if exists(g:focusSwitching) && g:focusSwitching != 0
+	autocmd FocusLost  * call StoreCurrentInputSource()
+	autocmd FocusGained * call RestoreLastInputSource()
+endif
+
+if exists(g:tabSwitching) && g:tabSwitching != 0
+	autocmd TabLeave  * call StoreCurrentInputSource()
+	autocmd TabEnter * call RestoreLastInputSource()
+endif
 
 autocmd VimEnter,InsertLeave * call SwitchToDefaultInputSource()
 
