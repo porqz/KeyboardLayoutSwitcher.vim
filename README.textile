@@ -40,6 +40,7 @@ If you want to use another keyboard layout as default, edit the plugin file (~/.
 @let g:defaultInputSourceIndex = 0@
 to:
 @let g:defaultInputSourceIndex = n " n is index of wanted keyboard layout@
+
 You can get index of wanted layout with additional application: just switch to the layout and execute additional application. It will return the number, which is the index of the layout.
 
 h2. Compatibility
@@ -90,6 +91,7 @@ h2. Настройка
 @let g:defaultInputSourceIndex = 0@
 на:
 @let g:defaultInputSourceIndex = n " Где n — номер нужной вам раскладки.@
+
 Номер нужной раскладки можно узнать, переключившись на желаемую раскладку и затем запустив вспомогательное приложение. Оно и вернёт нужный номер.
 
 h2. Совместимость
