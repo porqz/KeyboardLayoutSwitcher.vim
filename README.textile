@@ -43,7 +43,7 @@ to:
 
 h2. Compatibility
 
-KLS works only on Mac OS X 10.6 and higher. If you are still using 10.5, you can recompile source code of additional application by yourself.
+KLS works only on Mac OS X 10.6 and higher. If you are still using 10.5, you can recompile "source code of additional application":http://gist.github.com/462485 by yourself.
 
 And sorry for my english-hooenglish :).
 
@@ -92,4 +92,5 @@ h2. Настройка
 
 h2. Совместимость
 
-KLS работает только в Mac OS X 10.6 и выше. Если вы всё ещё используете 10.5, то вы можете перекомпилировать исходный код вспомогательного приложения самостоятельно.
+KLS работает только в Mac OS X 10.6 и выше. Если вы всё ещё используете 10.5, то вы можете перекомпилировать "исходный код вспомогательного приложения":http://gist.github.com/462485 самостоятельно.
+
