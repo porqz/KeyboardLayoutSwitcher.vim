@@ -6,9 +6,11 @@
 let g:defaultInputSourceIndex = 0 " Index of default keyboard layout
 let g:switcherPath = "~/.vim/bin/KeyboardLayoutSwitcher" " Path to KeyboardLayoutSwitcher binary
 
+call system("chmod 755 " . g:switcherPath) " Make the binary executable
+
 " Store index of current keyboard layout into variable
 function! StoreCurrentInputSource()
-	let t:currentInputSourceIndex = system(g:switcherPath 
+	let t:currentInputSourceIndex = system(g:switcherPath) 
 
 	return t:currentInputSourceIndex
 endfunction
