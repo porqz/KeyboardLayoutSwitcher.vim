@@ -4,13 +4,13 @@ See this text in Russian below.
 
 h2. What is it
 
-Keyboard Layout Switcher (KLS) is plugin for Vim, which frees users from unnecessary actions. 
+Keyboard Layout Switcher (KLS) is plugin for Vim, which frees users from unnecessary actions.
 
 h3. What does it do
 
-It switchs keyboard layout to default keyboard layout when:
+It switches keyboard layout to default keyboard layout when:
 * Vim is starting;
-* You are leaving input mode;
+* You are leaving insert mode;
 * You are entering command mode;
 * You are pressing double &lt;Esc&gt; in normal or command modes.
 
@@ -18,9 +18,11 @@ And wait, wait...
 
 * KLS strores keyboard layout, when Vim lost focus and restores this layout, when Vim got input focus.
 
+Optionally it can store layout of your input. So when you enter insert mode it restores layout which was used in insert mode previously.
+
 Imagine, you are editing source code in Vim. In some moment you are digressing, for example, to write in "Twitter":http://twitter.com/. When you will be back to Vim, KLS restores keyboard layout automaticly. It is incredibly handy.
 
-And each tab has itself keyboard layout.
+And each tab has it's own keyboard layout.
 
 h3. Default keyboard layout
 
@@ -28,9 +30,9 @@ Usually it is U.S., but KLS provides using others layouts, for example, "typogra
 
 h2. How does it works
 
-Keyboard layout switches by additional application, which is wrotten in Objective-C. When it starts without arguments, it prints index of current layout (for example, U.S. layout has index 0). To switch to some keyboard layout you should start the application with argument, which corresponds to the layout. If there is no layout with index, then application prints -1.
+Keyboard layout is switched by additional application, which is written in Objective-C. When it is started without arguments, it prints index of current layout (for example, U.S. layout has index 0). To switch to some keyboard layout you should start the application with argument which corresponds to the layout. If there is no layout with index then application prints -1.
 
-Vim plugin provides the control. I tried to comment source code maximal detailed, to everyone can understand it.
+Vim plugin provides the control. I tried to comment source code maximal detailed so everyone can understand it.
 
 h2. Preferences
 
@@ -38,6 +40,9 @@ As I said, usually default keyboard layout is english U.S., so in fact you don�
 
 If you want to use another keyboard layout as default, just add to your _~/.vimrc_ this line:
 @let g:kls_defaultInputSourceIndex = n " n is index of wanted keyboard layout@
+
+If you want to use storing layout of your input, just add to your _~/.vimrc_ this line:
+@let g:kls_insertEnterRestoresLast = 1@
 
 You can get index of wanted layout with additional application: just switch to the layout and execute additional application. It will return the number, which is the index of the layout.
 
@@ -53,7 +58,7 @@ h1. Keyboard Layout Switcher
 
 h2. Что это такое
 
-Keyboard Layout Switcher (KLS) — плагин для Vim, который освобождает пользователя от лишних телодвижений. 
+Keyboard Layout Switcher (KLS) — плагин для Vim, который освобождает пользователя от лишних телодвижений.
 
 h3. Что он делает
 
@@ -66,6 +71,8 @@ h3. Что он делает
 И подождите, подождите...
 
 * Запоминает раскладку, если фокус был потерян, и восстанавливает её при возврате фокуса.
+
+Опционально он может сохранять раскладку режима ввода. Таким образом, при входе в режим ввода он восстанавливает раскладку, которая использовалась в режиме ввода до этого.
 
 Представьте, что вы редактируете исходный код в Vim. В какой-то момент вы отвлекаетесь, например, чтобы написать в "Твиттер":http://twitter.com/. Когда вы вернётесь в Vim, KLS автоматически восстановит раскладку. Это невероятно удобно.
 
@@ -87,6 +94,9 @@ h2. Настройка
 
 Если вы всё же хотите использовать другую раскладку, то просто добавьте в ваш _~/.vimrc_ строку:
 @let g:kls_defaultInputSourceIndex = n " Где n — номер нужной вам раскладки.@
+
+Если вы хотите использовать сохранение раскадки ввода, то просто добавьте в ваш _~/.vimrc_ строку:
+@let g:kls_insertEnterRestoresLast = 1@
 
 Номер нужной раскладки можно узнать, переключившись на желаемую раскладку и затем запустив вспомогательное приложение. Оно и вернёт нужный номер.
 
