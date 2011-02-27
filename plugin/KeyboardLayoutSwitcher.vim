@@ -26,6 +26,11 @@ if !exists("g:kls_tabSwitching")
 	let g:kls_tabSwitching = 1 " Enabled
 endif
 
+" Set mappings
+if !exists("g:kls_mappings")
+	let g:kls_mappings = 1 " Enabled
+endif
+
 
 " Methods
 
@@ -68,5 +73,7 @@ autocmd VimEnter,InsertLeave * call g:KLS.SwitchToDefaultInputSource()
 
 " Keys mappings
 
-noremap : :silent call g:KLS.SwitchToDefaultInputSource()<CR>:
-noremap <silent> <Esc><Esc> :silent call g:KLS.SwitchToDefaultInputSource()<Esc><Esc>
+if g:kls_mappings != 0
+  noremap : :silent call g:KLS.SwitchToDefaultInputSource()<CR>:
+  noremap <silent> <Esc><Esc> :silent call g:KLS.SwitchToDefaultInputSource()<Esc><Esc>
+endif
