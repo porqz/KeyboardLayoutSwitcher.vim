@@ -13,7 +13,7 @@ endif
 
 " Path to KeyboardLayoutSwitcher binary
 if !exists("g:kls_switcherPath")
-	let g:kls_switcherPath = "~/.vim/bin/KeyboardLayoutSwitcher" 
+	let g:kls_switcherPath = findfile('bin/KeyboardLayoutSwitcher', &rtp)
 endif
 
 " Layout storing when Vim’s focus is lost / gained
