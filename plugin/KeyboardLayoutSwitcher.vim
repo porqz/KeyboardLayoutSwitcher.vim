@@ -26,6 +26,11 @@ if !exists("g:kls_tabSwitching")
 	let g:kls_tabSwitching = 1 " Enabled
 endif
 
+" Storing layout on InsertLeave and restoring on InsertEnter
+if !exists("g:kls_insertEnterRestoresLast")
+	let g:kls_insertEnterRestoresLast = 0 " Disabled
+endif
+
 " Set mappings
 if !exists("g:kls_mappings")
 	let g:kls_mappings = 1 " Enabled
@@ -55,6 +60,12 @@ function! g:KLS.RestoreLastInputSource()
 	endif
 endfunction
 
+" Store index of current keyboard layout into variable and
+" switch to default input source (kls_defaultInputSourceIndex)
+function! g:KLS.StoreCurrentAndSwitchToDefaultInputSource()
+  call g:KLS.StoreCurrentInputSource()
+  call g:KLS.SwitchToDefaultInputSource()
+endfunction
 
 " Events
 
@@ -68,8 +79,14 @@ if g:kls_tabSwitching != 0
 	autocmd TabEnter * call g:KLS.RestoreLastInputSource()
 endif
 
-autocmd VimEnter,InsertLeave * call g:KLS.SwitchToDefaultInputSource()
+autocmd VimEnter * call g:KLS.SwitchToDefaultInputSource()
 
+if g:kls_insertEnterRestoresLast != 0
+  autocmd InsertEnter * call g:KLS.RestoreLastInputSource()
+  autocmd InsertLeave * call g:KLS.StoreCurrentAndSwitchToDefaultInputSource()
+else
+  autocmd InsertLeave * call g:KLS.SwitchToDefaultInputSource()
+endif
 
 " Keys mappings
 
