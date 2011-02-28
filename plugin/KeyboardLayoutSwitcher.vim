@@ -1,5 +1,8 @@
 " Smart keyboard switching
 
+if !has("macunix")
+	finish
+endif
 
 " Keyboard layout switcher object initialize
 let g:KLS = {}
