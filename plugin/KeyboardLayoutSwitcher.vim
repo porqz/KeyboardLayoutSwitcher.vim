@@ -34,11 +34,6 @@ if !exists("g:kls_insertEnterRestoresLast")
 	let g:kls_insertEnterRestoresLast = 0 " Disabled
 endif
 
-" Set mappings
-if !exists("g:kls_mappings")
-	let g:kls_mappings = 1 " Enabled
-endif
-
 
 " Methods
 
@@ -89,11 +84,4 @@ if g:kls_insertEnterRestoresLast != 0
   autocmd InsertLeave * call g:KLS.StoreCurrentAndSwitchToDefaultInputSource()
 else
   autocmd InsertLeave * call g:KLS.SwitchToDefaultInputSource()
-endif
-
-" Keys mappings
-
-if g:kls_mappings != 0
-  noremap : :silent call g:KLS.SwitchToDefaultInputSource()<CR>:
-  noremap <silent> <Esc><Esc> :silent call g:KLS.SwitchToDefaultInputSource()<Esc><Esc>
 endif
