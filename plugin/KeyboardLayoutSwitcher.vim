@@ -1,15 +1,11 @@
 " Smart keyboard switching
 
-if !has("macunix")
-	finish
-endif
-
 " Keyboard layout switcher object initialize
 let g:KLS = {}
 
 " Properties
 
-" Index of default keyboard layout 
+" Index of default keyboard layout
 if !exists("g:kls_defaultInputSourceIndex")
 	let g:kls_defaultInputSourceIndex = 0 " Use 0 if you are using default english keyboard layout (U.S.)
 endif
@@ -39,7 +35,7 @@ endif
 
 " Store index of current keyboard layout into variable
 function! g:KLS.StoreCurrentInputSource()
-	let t:kls_currentInputSourceIndex = system(g:kls_switcherPath) 
+	let t:kls_currentInputSourceIndex = system(g:kls_switcherPath)
 
 	return t:kls_currentInputSourceIndex
 endfunction
