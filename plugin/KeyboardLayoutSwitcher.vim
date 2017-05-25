@@ -84,4 +84,4 @@ else
   autocmd InsertLeave * call s:kls_SwitchToDefaultInputSource()
 endif
 
-noremap <Esc><Esc> call SwitchToDefaultInputSource()<CR>
+noremap <Esc><Esc> :call SwitchToDefaultInputSource()<CR>
