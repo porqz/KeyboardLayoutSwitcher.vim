@@ -1,8 +1,5 @@
 " Smart keyboard switching
 
-" Keyboard layout switcher object initialize
-let g:KLS = {}
-
 " Properties
 
 " Index of default keyboard layout
@@ -34,50 +31,50 @@ endif
 " Methods
 
 " Store index of current keyboard layout into variable
-function! g:KLS.StoreCurrentInputSource()
+function! g:kls_StoreCurrentInputSource()
 	let t:kls_currentInputSourceIndex = system(g:kls_switcherPath)
 
 	return t:kls_currentInputSourceIndex
 endfunction
 
 " Switch to default input source (kls_defaultInputSourceIndex)
-function! g:KLS.SwitchToDefaultInputSource()
+function! g:kls_SwitchToDefaultInputSource()
 	return system(g:kls_switcherPath . " " . g:kls_defaultInputSourceIndex)
 endfunction
 
 " Restore stored index of keyboard layout from variable
-function! g:KLS.RestoreLastInputSource()
+function! g:kls_RestoreLastInputSource()
 	if exists("t:kls_currentInputSourceIndex")
 		return system(g:kls_switcherPath . " " . t:kls_currentInputSourceIndex)
 	else
-		return g:KLS.SwitchToDefaultInputSource()
+		return g:kls_SwitchToDefaultInputSource()
 	endif
 endfunction
 
 " Store index of current keyboard layout into variable and
 " switch to default input source (kls_defaultInputSourceIndex)
-function! g:KLS.StoreCurrentAndSwitchToDefaultInputSource()
-  call g:KLS.StoreCurrentInputSource()
-  call g:KLS.SwitchToDefaultInputSource()
+function! g:kls_StoreCurrentAndSwitchToDefaultInputSource()
+  call g:kls_StoreCurrentInputSource()
+  call g:kls_SwitchToDefaultInputSource()
 endfunction
 
 " Events
 
 if g:kls_focusSwitching != 0
-	autocmd FocusLost  * call g:KLS.StoreCurrentInputSource()
-	autocmd FocusGained * call g:KLS.RestoreLastInputSource()
+	autocmd FocusLost  * call g:kls_StoreCurrentInputSource()
+	autocmd FocusGained * call g:kls_RestoreLastInputSource()
 endif
 
 if g:kls_tabSwitching != 0
-	autocmd TabLeave  * call g:KLS.StoreCurrentInputSource()
-	autocmd TabEnter * call g:KLS.RestoreLastInputSource()
+	autocmd TabLeave  * call g:kls_StoreCurrentInputSource()
+	autocmd TabEnter * call g:kls_RestoreLastInputSource()
 endif
 
-autocmd VimEnter * call g:KLS.SwitchToDefaultInputSource()
+autocmd VimEnter * call g:kls_SwitchToDefaultInputSource()
 
 if g:kls_insertEnterRestoresLast != 0
-  autocmd InsertEnter * call g:KLS.RestoreLastInputSource()
-  autocmd InsertLeave * call g:KLS.StoreCurrentAndSwitchToDefaultInputSource()
+  autocmd InsertEnter * call g:kls_RestoreLastInputSource()
+  autocmd InsertLeave * call g:kls_StoreCurrentAndSwitchToDefaultInputSource()
 else
-  autocmd InsertLeave * call g:KLS.SwitchToDefaultInputSource()
+  autocmd InsertLeave * call g:kls_SwitchToDefaultInputSource()
 endif
