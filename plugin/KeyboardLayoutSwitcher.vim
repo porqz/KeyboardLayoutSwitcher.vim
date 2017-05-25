@@ -31,50 +31,50 @@ endif
 " Methods
 
 " Store index of current keyboard layout into variable
-function! g:kls_StoreCurrentInputSource()
+function! s:kls_StoreCurrentInputSource()
 	let t:kls_currentInputSourceIndex = system(g:kls_switcherPath)
 
 	return t:kls_currentInputSourceIndex
 endfunction
 
 " Switch to default input source (kls_defaultInputSourceIndex)
-function! g:kls_SwitchToDefaultInputSource()
+function! s:kls_SwitchToDefaultInputSource()
 	return system(g:kls_switcherPath . " " . g:kls_defaultInputSourceIndex)
 endfunction
 
 " Restore stored index of keyboard layout from variable
-function! g:kls_RestoreLastInputSource()
+function! s:kls_RestoreLastInputSource()
 	if exists("t:kls_currentInputSourceIndex")
 		return system(g:kls_switcherPath . " " . t:kls_currentInputSourceIndex)
 	else
-		return g:kls_SwitchToDefaultInputSource()
+		return s:kls_SwitchToDefaultInputSource()
 	endif
 endfunction
 
 " Store index of current keyboard layout into variable and
 " switch to default input source (kls_defaultInputSourceIndex)
-function! g:kls_StoreCurrentAndSwitchToDefaultInputSource()
-  call g:kls_StoreCurrentInputSource()
-  call g:kls_SwitchToDefaultInputSource()
+function! s:kls_StoreCurrentAndSwitchToDefaultInputSource()
+  call s:kls_StoreCurrentInputSource()
+  call s:kls_SwitchToDefaultInputSource()
 endfunction
 
 " Events
 
 if g:kls_focusSwitching != 0
-	autocmd FocusLost  * call g:kls_StoreCurrentInputSource()
-	autocmd FocusGained * call g:kls_RestoreLastInputSource()
+	autocmd FocusLost  * call s:kls_StoreCurrentInputSource()
+	autocmd FocusGained * call s:kls_RestoreLastInputSource()
 endif
 
 if g:kls_tabSwitching != 0
-	autocmd TabLeave  * call g:kls_StoreCurrentInputSource()
-	autocmd TabEnter * call g:kls_RestoreLastInputSource()
+	autocmd TabLeave  * call s:kls_StoreCurrentInputSource()
+	autocmd TabEnter * call s:kls_RestoreLastInputSource()
 endif
 
-autocmd VimEnter * call g:kls_SwitchToDefaultInputSource()
+autocmd VimEnter * call s:kls_SwitchToDefaultInputSource()
 
 if g:kls_insertEnterRestoresLast != 0
-  autocmd InsertEnter * call g:kls_RestoreLastInputSource()
-  autocmd InsertLeave * call g:kls_StoreCurrentAndSwitchToDefaultInputSource()
+  autocmd InsertEnter * call s:kls_RestoreLastInputSource()
+  autocmd InsertLeave * call s:kls_StoreCurrentAndSwitchToDefaultInputSource()
 else
-  autocmd InsertLeave * call g:kls_SwitchToDefaultInputSource()
+  autocmd InsertLeave * call s:kls_SwitchToDefaultInputSource()
 endif
