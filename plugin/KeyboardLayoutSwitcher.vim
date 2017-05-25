@@ -42,6 +42,10 @@ function! s:kls_SwitchToDefaultInputSource()
 	return system(g:kls_switcherPath . " " . g:kls_defaultInputSourceIndex)
 endfunction
 
+function! SwitchToDefaultInputSource()
+    call s:kls_SwitchToDefaultInputSource()
+endfunction
+
 " Restore stored index of keyboard layout from variable
 function! s:kls_RestoreLastInputSource()
 	if exists("t:kls_currentInputSourceIndex")
@@ -57,6 +61,7 @@ function! s:kls_StoreCurrentAndSwitchToDefaultInputSource()
   call s:kls_StoreCurrentInputSource()
   call s:kls_SwitchToDefaultInputSource()
 endfunction
+
 
 " Events
 
@@ -78,3 +83,5 @@ if g:kls_insertEnterRestoresLast != 0
 else
   autocmd InsertLeave * call s:kls_SwitchToDefaultInputSource()
 endif
+
+noremap <Esc><Esc> call SwitchToDefaultInputSource()<CR>
