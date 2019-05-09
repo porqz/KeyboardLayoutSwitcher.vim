@@ -1,3 +1,5 @@
+h1. This repo is abandoned. If you want to support it or became an owner, please, contact me.
+
 h1. Keyboard Layout Switcher
 
 See this text in Russian below.
