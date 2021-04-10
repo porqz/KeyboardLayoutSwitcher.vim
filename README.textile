@@ -1,5 +1,4 @@
-h1. This repo is abandoned. If you want to support it or become an owner, please, ["contact me":mailto:p@mesquite.ru]!
-
+h1. This repo is abandoned. If you want to support it or become an owner, please, ["contact me":mailto:p+old.KLS@mesquite.ru]!
 
 
 h1. Keyboard Layout Switcher
@@ -8,54 +7,51 @@ See this text in Russian below.
 
 h2. What is it
 
-Keyboard Layout Switcher (KLS) is plugin for Vim, which frees users from unnecessary actions.
+Keyboard Layout Switcher (KLS) is a plugin for Vim that makes international keyboard user’s life easer.
 
 h3. What does it do
 
-It switches keyboard layout to default keyboard layout when:
-* Vim is starting;
-* You are leaving insert mode;
-* You are entering command mode;
+It switches keyboard layout to default when:
+* Vim is starting
+* You are leaving insert mode
+* You are entering command mode
 * You are pressing double &lt;Esc&gt; in normal or command modes.
 
 And wait, wait...
 
-* KLS strores keyboard layout, when Vim lost focus and restores this layout, when Vim got input focus.
+* KLS strores current keyboard layout when Vim lost focus, and restores the layout when Vim got input focus back.
 
-Optionally it can store layout of your input. So when you enter insert mode it restores layout which was used in insert mode previously.
+Optionally, it can store current layout for the insert mode. So, when you leave the insert mode and enter to the insert mode again KLS restores layout used in insert mode previously.
 
-Imagine, you are editing source code in Vim. In some moment you are digressing, for example, to write in "Twitter":http://twitter.com/. When you will be back to Vim, KLS restores keyboard layout automaticly. It is incredibly handy.
+Imagine, you are editing source code in Vim. In some moment you are switching to another application to write a text not in English. When you‘ll switch back to Vim, KLS restores keyboard layout automaticly. It is incredibly handy.
 
-And each tab has it's own keyboard layout.
+And each tab has it‘s own keyboard layout.
 
 h3. Default keyboard layout
 
-Usually it is U.S., but KLS provides using others layouts, for example, "typography layout by Ilya Birman":http://ilyabirman.ru/typography-layout/.
+Usually it is U.S., but KLS allow to use other layouts, for example, "Typography layout by Ilya Birman":http://ilyabirman.ru/typography-layout/.
 
-h2. How does it works
+h2. How does it work
 
-Keyboard layout is switched by additional application, which is written in Objective-C. When it is started without arguments, it prints index of current layout (for example, U.S. layout has index 0). To switch to some keyboard layout you should start the application with argument which corresponds to the layout. If there is no layout with index then application prints -1.
+Keyboard layout is switched directly by additional helper application written in Objective-C. When the helper startd without arguments it prints index of current layout (for example, U.S. layout usually has index 0). To switch current keyboard layout you should start the application with argument which corresponds to the layout. If there is no layout with index then application prints -1.
 
-Vim plugin provides the control. I tried to comment source code maximal detailed so everyone can understand it.
+And Vim plugin just controls the helper. I tried to comment the source code detailed so everyone can understand it.
 
 h2. Preferences
 
-As I said, usually default keyboard layout is english U.S., so in fact you don’t need to edit preferences.
+As I said, usually a default keyboard layout is English U.S., so, in fact you don’t need to edit preferences.
 
-If you want to use another keyboard layout as default, just add to your _~/.vimrc_ this line:
+If you want to use another keyboard layout as default just add this line to your _~/.vimrc_:
 @let g:kls_defaultInputSourceIndex = n " n is index of wanted keyboard layout@
 
-If you want to use storing layout of your input, just add to your _~/.vimrc_ this line:
+If you want to use restoring of insert mode’s keyboard layout just add this line to your _~/.vimrc_:
 @let g:kls_insertEnterRestoresLast = 1@
 
-You can get index of wanted layout with additional application: just switch to the layout and execute additional application. It will return the number, which is the index of the layout.
+You can get index of wanted layout with the helper application: just switch to needed layout and execute the helper application. It will return a number and that number is the index of the layout.
 
 h2. Compatibility
 
-KLS works only on Mac OS X 10.6 and higher. If you are still using 10.5, you can recompile "source code of additional application":http://gist.github.com/462485 by yourself.
-
-And sorry for my english-hooenglish :).
-
+KLS works only on Mac OS X 10.6 and higher. If you are still using 10.5 you should recompile "source code of the helper application":http://gist.github.com/462485 by yourself.
 
 
 h1. Keyboard Layout Switcher
@@ -67,9 +63,9 @@ Keyboard Layout Switcher (KLS) — плагин для Vim, который ос�
 h3. Что он делает
 
 Переключает клавиатурную раскладку на раскладку по умолчанию:
-* При запуске Vim;
-* При выходе из режима ввода;
-* Во время входа в командный режим;
+* При запуске Vim
+* При выходе из режима ввода
+* Во время входа в командный режим
 * При двойном нажатии &lt;Esc&gt; в нормальном и командном режимах.
 
 И подождите, подождите...
@@ -102,7 +98,7 @@ h2. Настройка
 Если вы хотите использовать сохранение раскадки ввода, то просто добавьте в ваш _~/.vimrc_ строку:
 @let g:kls_insertEnterRestoresLast = 1@
 
-Номер нужной раскладки можно узнать, переключившись на желаемую раскладку и затем запустив вспомогательное приложение. Оно и вернёт нужный номер.
+Чтобы узнать номер нужной раскладки, на неё надо переключиться, а затем запустить вспомогатальное приложение. Оно и вернёт нужный номер.
 
 h2. Совместимость
 
